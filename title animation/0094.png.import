@@ -1,0 +1,34 @@
+[remap]
+
+importer="texture"
+type="StreamTexture"
+path="res://.import/0094.png-fd905a350e67e9a62f76d9abe3ad4535.stex"
+metadata={
+"vram_texture": false
+}
+
+[deps]
+
+source_file="res://title animation/0094.png"
+dest_files=[ "res://.import/0094.png-fd905a350e67e9a62f76d9abe3ad4535.stex" ]
+
+[params]
+
+compress/mode=0
+compress/lossy_quality=0.7
+compress/hdr_mode=0
+compress/bptc_ldr=0
+compress/normal_map=0
+flags/repeat=0
+flags/filter=false
+flags/mipmaps=false
+flags/anisotropic=false
+flags/srgb=2
+process/fix_alpha_border=true
+process/premult_alpha=false
+process/HDR_as_SRGB=false
+process/invert_color=false
+stream=false
+size_limit=0
+detect_3d=false
+svg/scale=1.0

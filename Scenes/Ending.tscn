@@ -1,0 +1,63 @@
+[gd_scene load_steps=11 format=2]
+
+[ext_resource path="res://tilesets/Title animation.tres" type="SpriteFrames" id=1]
+[ext_resource path="res://buttons/title 1.png" type="Texture" id=2]
+[ext_resource path="res://buttons/title 2.png" type="Texture" id=3]
+[ext_resource path="res://buttons/ending.png" type="Texture" id=4]
+[ext_resource path="res://buttons/title 3.png" type="Texture" id=5]
+[ext_resource path="res://buttons/quit 3.png" type="Texture" id=6]
+[ext_resource path="res://buttons/quit 2.png" type="Texture" id=7]
+[ext_resource path="res://buttons/quit 1.png" type="Texture" id=8]
+[ext_resource path="res://scripts/Ending.gd" type="Script" id=9]
+
+[sub_resource type="Environment" id=1]
+background_mode = 4
+dof_blur_near_enabled = true
+
+[node name="Ending" type="Node2D"]
+script = ExtResource( 9 )
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource( 1 )
+
+[node name="AnimatedSprite" type="AnimatedSprite" parent="."]
+position = Vector2( 512, 300 )
+frames = ExtResource( 1 )
+animation = "Def"
+frame = 114
+playing = true
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="ending" type="Sprite" parent="CanvasLayer"]
+position = Vector2( 512, 300 )
+texture = ExtResource( 4 )
+
+[node name="Control" type="Control" parent="CanvasLayer"]
+margin_left = 148.0
+margin_top = 374.0
+margin_right = 188.0
+margin_bottom = 414.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Title Button" type="TextureButton" parent="CanvasLayer/Control"]
+margin_right = 40.0
+margin_bottom = 40.0
+texture_normal = ExtResource( 2 )
+texture_pressed = ExtResource( 5 )
+texture_hover = ExtResource( 3 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Quit Button" type="TextureButton" parent="CanvasLayer/Control"]
+margin_left = 478.0
+margin_right = 678.0
+margin_bottom = 80.0
+texture_normal = ExtResource( 8 )
+texture_pressed = ExtResource( 6 )
+texture_hover = ExtResource( 7 )
+[connection signal="pressed" from="CanvasLayer/Control/Title Button" to="." method="_on_Title_Button_pressed"]
+[connection signal="pressed" from="CanvasLayer/Control/Quit Button" to="." method="_on_Quit_Button_pressed"]

@@ -1,0 +1,47 @@
+[gd_scene load_steps=6 format=2]
+
+[ext_resource path="res://assets/light weak.png" type="Texture" id=1]
+[ext_resource path="res://assets/vectory.png" type="Texture" id=2]
+[ext_resource path="res://scripts/Victory.gd" type="Script" id=3]
+
+[sub_resource type="Animation" id=1]
+resource_name = "Normal"
+length = 2.0
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath("vectory:rotation_degrees")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 2 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ 0.0, 360.0 ]
+}
+
+[sub_resource type="CircleShape2D" id=2]
+radius = 80.2363
+
+[node name="Victory" type="Light2D"]
+light_mask = 0
+texture = ExtResource( 1 )
+texture_scale = 15.0
+range_item_cull_mask = 3
+shadow_enabled = true
+script = ExtResource( 3 )
+
+[node name="vectory" type="Sprite" parent="."]
+texture = ExtResource( 2 )
+vframes = 3
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+autoplay = "Normal"
+anims/Normal = SubResource( 1 )
+
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource( 2 )
+[connection signal="body_entered" from="Area2D" to="." method="_on_Area2D_body_entered"]

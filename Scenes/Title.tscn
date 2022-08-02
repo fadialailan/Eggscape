@@ -1,0 +1,135 @@
+[gd_scene load_steps=20 format=2]
+
+[ext_resource path="res://tilesets/Title animation.tres" type="SpriteFrames" id=1]
+[ext_resource path="res://buttons/start 1.png" type="Texture" id=145]
+[ext_resource path="res://buttons/start 3.png" type="Texture" id=146]
+[ext_resource path="res://buttons/start 2.png" type="Texture" id=147]
+[ext_resource path="res://buttons/credits 1.png" type="Texture" id=148]
+[ext_resource path="res://buttons/credits 3.png" type="Texture" id=149]
+[ext_resource path="res://buttons/credits 2.png" type="Texture" id=150]
+[ext_resource path="res://buttons/quit 1.png" type="Texture" id=151]
+[ext_resource path="res://buttons/quit 3.png" type="Texture" id=152]
+[ext_resource path="res://buttons/quit 2.png" type="Texture" id=153]
+[ext_resource path="res://scripts/Title.gd" type="Script" id=154]
+[ext_resource path="res://buttons/credits.png" type="Texture" id=155]
+[ext_resource path="res://buttons/back 1.png" type="Texture" id=156]
+[ext_resource path="res://buttons/back 2.png" type="Texture" id=157]
+[ext_resource path="res://buttons/back 3.png" type="Texture" id=158]
+[ext_resource path="res://music/tick.wav" type="AudioStream" id=159]
+[ext_resource path="res://music/knock.wav" type="AudioStream" id=160]
+[ext_resource path="res://assets/name.png" type="Texture" id=161]
+
+[sub_resource type="Environment" id=1]
+background_mode = 4
+dof_blur_far_distance = 1.0
+dof_blur_far_transition = 8192.0
+dof_blur_far_amount = 1.0
+glow_intensity = 8.0
+
+[node name="Title" type="Node2D"]
+script = ExtResource( 154 )
+level_1 = "res://Scenes/World.tscn"
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource( 1 )
+
+[node name="BG title" type="AnimatedSprite" parent="."]
+frames = ExtResource( 1 )
+animation = "Def"
+frame = 12
+playing = true
+centered = false
+
+[node name="Buttons" type="Control" parent="."]
+margin_left = 139.47
+margin_top = 161.866
+margin_right = 179.47
+margin_bottom = 201.866
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Start button" type="TextureButton" parent="Buttons"]
+margin_right = 40.0
+margin_bottom = 40.0
+texture_normal = ExtResource( 145 )
+texture_pressed = ExtResource( 146 )
+texture_hover = ExtResource( 147 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="credits button" type="TextureButton" parent="Buttons"]
+margin_top = 120.0
+margin_right = 200.0
+margin_bottom = 200.0
+texture_normal = ExtResource( 148 )
+texture_pressed = ExtResource( 149 )
+texture_hover = ExtResource( 150 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="quit button" type="TextureButton" parent="Buttons"]
+margin_top = 240.0
+margin_right = 200.0
+margin_bottom = 320.0
+texture_normal = ExtResource( 151 )
+texture_pressed = ExtResource( 152 )
+texture_hover = ExtResource( 153 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="Credits" type="Control" parent="CanvasLayer"]
+visible = false
+margin_right = 1024.0
+margin_bottom = 600.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="TextureRect" type="TextureRect" parent="CanvasLayer/Credits"]
+margin_left = 130.31
+margin_top = 63.0068
+margin_right = 930.31
+margin_bottom = 532.007
+texture = ExtResource( 155 )
+expand = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="TextureButton" type="TextureButton" parent="CanvasLayer/Credits"]
+margin_left = 187.588
+margin_top = 390.929
+margin_right = 387.588
+margin_bottom = 470.929
+texture_normal = ExtResource( 156 )
+texture_pressed = ExtResource( 158 )
+texture_hover = ExtResource( 157 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="tick" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 159 )
+volume_db = -15.0
+autoplay = true
+
+[node name="knock" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 160 )
+volume_db = -35.0
+
+[node name="name" type="Sprite" parent="."]
+modulate = Color( 0.95, 0.9443, 0.912, 1 )
+position = Vector2( 288.566, 98.9189 )
+texture = ExtResource( 161 )
+
+[connection signal="pressed" from="Buttons/Start button" to="." method="_on_Start_button_pressed"]
+[connection signal="pressed" from="Buttons/credits button" to="." method="_on_credits_button_pressed"]
+[connection signal="pressed" from="Buttons/quit button" to="." method="_on_quit_button_pressed"]
+[connection signal="pressed" from="CanvasLayer/Credits/TextureButton" to="." method="_on_TextureButton_pressed"]
+[connection signal="finished" from="tick" to="." method="_on_tick_finished"]
